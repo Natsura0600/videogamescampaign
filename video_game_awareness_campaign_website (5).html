@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Games Campaign</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#ffffff;color:#111;overflow-x:hidden}
+
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:center;gap:30px;padding:15px;background:rgba(255,255,255,0.8);backdrop-filter:blur(10px);z-index:10;border-bottom:1px solid #eee}
+nav a{color:#111;text-decoration:none;font-weight:600;cursor:pointer;transition:0.3s}
+nav a:hover{color:#e11d48;transform:scale(1.1)}
+
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 20px;animation:fadeIn 1s ease}
+
+h1{font-size:3rem;font-weight:800;color:#111}
+h1 span{color:#e11d48}
+
+p{max-width:600px;color:#444}
+
+/* MODERN BACKGROUND ACCENTS */
+.bg-accent{
+  position:fixed;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle, rgba(225,29,72,0.2), transparent);
+  border-radius:50%;
+  filter:blur(80px);
+  z-index:-1;
+}
+.bg1{top:10%;left:10%}
+.bg2{bottom:10%;right:10%}
+
+.card-container{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:40px}
+.card{background:white;color:#111;padding:25px;border-radius:20px;width:260px;transition:0.4s;animation:slideUp 1s ease;border:2px solid #111}
+.card:hover{transform:translateY(-10px) scale(1.05);background:#e11d48}
+
+.video-container{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:30px}
+video{width:320px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.3);transition:0.3s}
+video:hover{transform:scale(1.05)}
+
+.chart{width:320px;height:220px;display:flex;align-items:flex-end;justify-content:center;gap:12px;margin-top:30px;margin-left:auto;margin-right:auto}
+.bar{position:relative;display:flex;justify-content:center;align-items:flex-end;width:40px;background:#111;animation:grow 1.5s ease;border-radius:6px}
+.bar:hover{background:#e11d48}
+
+.bar span{
+  position:absolute;
+  text-align:center;
+  width:100%;
+  font-size:12px;
+}
+
+.bar .value{
+  top:-25px;
+  font-weight:600;
+  color:#111;
+}
+
+.bar .label{
+  bottom:-25px;
+  color:#555;
+}
+
+.night-bar{
+  background:#e11d48;
+  box-shadow:0 0 15px rgba(225,29,72,0.5);
+  animation:grow 2s ease, pulse 2s infinite;
+}
+
+@keyframes grow{from{height:0}to{height:100%}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes pulse{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.1)}}
+.cta-btn{
+  margin-top:30px;
+  padding:15px 35px;
+  border:2px solid #e11d48;
+  background:white;
+  color:#e11d48;
+  border-radius:50px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+  animation:pulseBtn 2s infinite;
+}
+
+.cta-btn:hover{
+  background:#e11d48;
+  color:white;
+  transform:scale(1.1);
+}
+
+@keyframes pulseBtn{
+  0%,100%{box-shadow:0 0 0 0 rgba(225,29,72,0.4)}
+  50%{box-shadow:0 0 15px 5px rgba(225,29,72,0.2)}
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px){
+
+  h1{
+    font-size: 2rem;
+  }
+
+  p{
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+
+  nav{
+    gap: 15px;
+    font-size: 0.9rem;
+  }
+
+  section{
+    padding: 100px 15px;
+  }
+
+  .card-container{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card{
+    width: 90%;
+  }
+
+  .video-container{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  video{
+    width: 90%;
+  }
+
+  .chart{
+    width: 90%;
+    height: 180px;
+    gap: 8px;
+  }
+
+  .bar{
+    width: 30px;
+  }
+
+  .bar .value{
+    font-size: 10px;
+    top: -20px;
+  }
+
+  .bar .label{
+    font-size: 10px;
+    bottom: -20px;
+  }
+
+  .cta-btn{
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+/* HAMBURGER */
+.menu-toggle{
+  display:none;
+  font-size:1.8rem;
+  cursor:pointer;
+}
+
+/* NAV LINKS */
+.nav-links{
+  display:flex;
+  gap:30px;
+}
+
+/* MOBILE MENU */
+@media (max-width:768px){
+
+  .menu-toggle{
+    display:block;
+    position:absolute;
+    left:20px;
+  }
+
+  .nav-links{
+    position:absolute;
+    top:60px;
+    left:0;
+    width:100%;
+    background:white;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    padding:20px 0;
+    display:none;
+    border-bottom:1px solid #eee;
+    animation:fadeIn 0.3s ease;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+}
+
+/* HAMBURGER ICON LINES */
+.menu-toggle{
+  display:none;
+  width:30px;
+  height:25px;
+  position:relative;
+  cursor:pointer;
+}
+
+.menu-toggle span{
+  position:absolute;
+  width:100%;
+  height:3px;
+  background:#111;
+  left:0;
+  transition:0.3s;
+}
+
+.menu-toggle span:nth-child(1){ top:0; }
+.menu-toggle span:nth-child(2){ top:10px; }
+.menu-toggle span:nth-child(3){ top:20px; }
+
+/* ANIMATION TO X */
+.menu-toggle.active span:nth-child(1){
+  transform:rotate(45deg);
+  top:10px;
+}
+
+.menu-toggle.active span:nth-child(2){
+  opacity:0;
+}
+
+.menu-toggle.active span:nth-child(3){
+  transform:rotate(-45deg);
+  top:10px;
+}
+
+
+</style>
+
+</style>
+</head>
+<body>
+
+<div class="bg-accent bg1"></div>
+<div class="bg-accent bg2"></div>
+
+<nav>
+<div class="menu-toggle" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+  <div class="nav-links" id="navLinks">
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('videos')">Videos</a>
+    <a onclick="showPage('data')">Data</a>
+  </div>
+</nav>
+
+<section id="home">
+<h1>Video games aren't the enemy.<br><span>Lack of control is.</span></h1>
+<p>Find balance. Take control.</p>
+
+<button class="cta-btn" onclick="goToData()">See Survey Results</button>
+
+<div class="card-container">
+<div class="card"><h3>Step 1</h3><p>Recognize the problem</p></div>
+<div class="card"><h3>Step 2</h3><p>Control your time</p></div>
+<div class="card"><h3>Step 3</h3><p>Build habits</p></div>
+</div>
+</section>
+
+<section id="videos" style="display:none">
+<h1>Campaign Videos</h1>
+<div class="video-container">
+<video controls><source src="video1.mp4" type="video/mp4"></video>
+<video controls><source src="video2.mp4" type="video/mp4"></video>
+<video controls><source src="video3.mp4" type="video/mp4"></video>
+</div>
+</section>
+
+<section id="data" style="display:none">
+<h1>Survey Results</h1>
+<p>Based on 50 students</p>
+
+<div class="chart">
+  <div class="bar" style="height:80%">
+    <span class="label">Daily</span>
+    <span class="value">80%</span>
+  </div>
+  <div class="bar" style="height:60%">
+    <span class="label">&lt;2h</span>
+    <span class="value">60%</span>
+  </div>
+  <div class="bar" style="height:90%">
+    <span class="label">&gt;3h</span>
+    <span class="value">90%</span>
+  </div>
+  <div class="bar" style="height:40%">
+    <span class="label">Morning</span>
+    <span class="value">40%</span>
+  </div>
+  <div class="bar night-bar" style="height:95%">
+    <span class="label">Night</span>
+    <span class="value">95%</span>
+  </div>
+</div>
+<div class="bar" style="height:60%"></div>
+<div class="bar" style="height:90%"></div>
+<div class="bar" style="height:40%"></div>
+<div class="bar night-bar" style="height:95%"></div>
+</div>
+
+<p style="margin-top:50px;max-width:400px">
+Gaming activity peaks at night, showing the highest percentage of use — which may negatively impact sleep and mental health.
+</p>
+
+</section>
+
+<script>
+function goToData(){
+  showPage('data');
+}
+
+function showPage(page){
+document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
+document.getElementById(page).style.display='flex';
+}
+</script>
+<script>
+function toggleMenu(){
+  const nav = document.getElementById("navLinks");
+  const toggle = document.querySelector(".menu-toggle");
+
+  nav.classList.toggle("active");
+  toggle.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
