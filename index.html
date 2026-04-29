@@ -244,7 +244,70 @@ video:hover{transform:scale(1.05)}
   top:10px;
 }
 
+iframe{
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  transition:0.3s;
+}
 
+iframe:hover{
+  transform:scale(1.05);
+}
+
+.netflix-row{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  padding:20px;
+  scroll-behavior:smooth;
+}
+
+.netflix-row::-webkit-scrollbar{
+  height:8px;
+}
+
+.netflix-row::-webkit-scrollbar-thumb{
+  background:#e11d48;
+  border-radius:10px;
+}
+
+.video-card{
+  min-width:300px;
+  height:170px;
+  border-radius:15px;
+  overflow:hidden;
+  transition:0.3s;
+  position:relative;
+}
+
+.video-card iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+.video-card:hover{
+  transform:scale(1.1);
+  z-index:2;
+}
+
+.video-card::after{
+  content:"▶";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:2rem;
+  color:white;
+  opacity:0.8;
+  pointer-events:none;
+  transition:0.3s;
+}
+
+.video-card:hover::after{
+  opacity:0;
+}
+  
 </style>
 
 </style>
@@ -282,10 +345,20 @@ video:hover{transform:scale(1.05)}
 
 <section id="videos" style="display:none">
 <h1>Campaign Videos</h1>
-<div class="video-container">
-<video controls><source src="video1.mp4" type="video/mp4"></video>
-<video controls><source src="https://drive.google.com/file/d/1zJwoEngR4eBg6UxmRwS7ebXXH-MVZD0V/view?usp=sharing" type="video/mp4"></video>
-<video controls><source src="video3.mp4" type="video/mp4"></video>
+<div class="netflix-row">
+
+  <div class="video-card">
+    <iframe src="https://drive.google.com/file/d/ID1/preview"></iframe>
+  </div>
+
+  <div class="video-card">
+    <iframe src="https://drive.google.com/file/d/1zJwoEngR4eBg6UxmRwS7ebXXH-MVZD0V/preview"></iframe>
+  </div>
+
+  <div class="video-card">
+    <iframe src="https://drive.google.com/file/d/ID3/preview"></iframe>
+  </div>
+
 </div>
 </section>
 
